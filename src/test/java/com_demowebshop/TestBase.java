@@ -9,6 +9,7 @@ import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
 
@@ -21,6 +22,14 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         RestAssured.baseURI = "http://demowebshop.tricentis.com";
         Configuration.baseUrl = "http://demowebshop.tricentis.com";
+
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+
+        Configuration.browserCapabilities = capabilities;
 
     }
 
