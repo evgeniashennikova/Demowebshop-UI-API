@@ -5,8 +5,10 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import com_demowebshop.attach.Attach;
 import com_demowebshop.steps.ApiSteps;
 import com_demowebshop.steps.WebSteps;
+import config.WebDriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
+import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -15,6 +17,7 @@ public class TestBase {
 
     ApiSteps apiSteps = new ApiSteps();
     WebSteps webSteps = new WebSteps();
+    public final static WebDriverConfig webConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @BeforeAll
     static void setUp() {
@@ -23,7 +26,10 @@ public class TestBase {
         RestAssured.baseURI = "http://demowebshop.tricentis.com";
         Configuration.baseUrl = "http://demowebshop.tricentis.com";
 
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = webConfig.remoteUrl();
+        Configuration.browser = webConfig.browser();
+        Configuration.browserSize = webConfig.browserSize();
+        Configuration.browserVersion = webConfig.versionBrowser();
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
