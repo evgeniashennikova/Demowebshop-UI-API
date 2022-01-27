@@ -12,8 +12,6 @@ public interface UserCredential extends Config {
 
     String password();
 
-    String newPassword();
-
     String firstName();
 
     String lastName();
