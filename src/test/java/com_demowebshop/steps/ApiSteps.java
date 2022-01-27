@@ -6,7 +6,8 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.aeonbits.owner.ConfigFactory;
 
-import static com_demowebshop.filters.CustomLogFilter.customLogFilter;
+import static com_demowebshop.Spec.request;
+import static com_demowebshop.Spec.response;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
@@ -20,19 +21,16 @@ public class ApiSteps {
         String data = "addtocart_14.EnteredQuantity=2"; // добавляем в Wishlist товар в кол-ве 2 штук
 
         return given()
-                .filter(customLogFilter().withCustomTemplates())
-                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
+                .spec(request)
                 .body(data)
                 .when()
-                .log().uri()
-                .log().body()
                 .post("/addproducttocart/details/14/2")
                 .then()
-                .log().body()
-                .statusCode(200)
+                .spec(response)
                 .body("success", is(true),
                         "message", is("The product has been added to your \u003ca href=\"/wishlist\"\u003ewishlist\u003c/a\u003e"),
-                        "updatetopwishlistsectionhtml", is("(2)"));
+                        "updatetopwishlistsectionhtml", is("(2)"))
+                .log().body();
     }
 
     @Step("Добавление товара в Wishlist c использованием cookie")
@@ -41,13 +39,13 @@ public class ApiSteps {
         String data = "addtocart_14.EnteredQuantity=1";
 
         return given()
-                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
+                .spec(request)
                 .cookie(credential.cookie())
                 .body(data)
                 .when()
                 .post("/addproducttocart/details/14/2")
                 .then()
-                .statusCode(200)
+                .spec(response)
                 .extract()
                 .response();
     }
@@ -58,23 +56,25 @@ public class ApiSteps {
         String valueSearch = "book";
 
         return given()
+                .spec(request)
                 .when()
                 .get("/search?q=" + valueSearch)
                 .then()
-                .statusCode(200);
+                .spec(response);
     }
 
     @Step("Авторизоваться на сайте demowebshop.tricentis.com")
     public Response authWebsite() {
 
         return (Response) given()
-                .contentType("application/x-www-form-urlencoded; charset=UTF-8")
+                .spec(request)
                 .formParam("Email", credential.login())
                 .formParam("Password", credential.password())
                 .when()
                 .post("login")
                 .then()
                 .statusCode(302)
+                .log().body()
                 .extract()
                 .response();
 
