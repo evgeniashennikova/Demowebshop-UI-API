@@ -5,11 +5,14 @@ import com.codeborne.selenide.Selenide;
 import com_demowebshop.attach.Attach;
 import config.UserCredential;
 import config.WebDriverConfig;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.Condition.text;
@@ -19,12 +22,14 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class WebSteps {
-
+    static WebDriver driver;
     public static UserCredential credential = ConfigFactory.create(UserCredential.class);
     public static WebDriverConfig webConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @BeforeAll
     static void webSetUp() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
 
         Configuration.remote = webConfig.remoteUrl();
         Configuration.browser = webConfig.browser();
@@ -42,7 +47,9 @@ public class WebSteps {
 
     @AfterEach
     public void tearDown() {
-
+        if (driver != null) {
+            driver.quit();
+        }
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
