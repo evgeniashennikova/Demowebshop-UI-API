@@ -1,9 +1,16 @@
 package com_demowebshop.steps;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com_demowebshop.attach.Attach;
 import config.UserCredential;
+import config.WebDriverConfig;
 import io.qameta.allure.Step;
 import org.aeonbits.owner.ConfigFactory;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -14,6 +21,34 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class WebSteps {
 
     public static UserCredential credential = ConfigFactory.create(UserCredential.class);
+    public static WebDriverConfig webConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+
+    @BeforeAll
+    static void webSetUp() {
+
+        Configuration.remote = webConfig.remoteUrl();
+        Configuration.browser = webConfig.browser();
+        Configuration.browserSize = webConfig.browserSize();
+        Configuration.browserVersion = webConfig.versionBrowser();
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+
+        Configuration.browserCapabilities = capabilities;
+
+    }
+
+    @AfterEach
+    public void tearDown() {
+
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+        Attach.addVideo();
+    }
+
 
     @Step("Открыть браузер и подставить cookie для Wishlist")
     public void setCookieForWishlist(String cookie) {

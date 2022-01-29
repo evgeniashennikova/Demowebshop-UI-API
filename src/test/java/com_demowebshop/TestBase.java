@@ -20,7 +20,7 @@ public class TestBase {
 
     ApiSteps apiSteps = new ApiSteps();
     WebSteps webSteps = new WebSteps();
-    public static WebDriverConfig webConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
+//    public static WebDriverConfig webConfig = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
 
     @BeforeAll
     static void setUp() {
@@ -29,16 +29,16 @@ public class TestBase {
         RestAssured.baseURI = "http://demowebshop.tricentis.com";
         Configuration.baseUrl = "http://demowebshop.tricentis.com";
 
-        Configuration.remote = webConfig.remoteUrl();
-        Configuration.browser = webConfig.browser();
-        Configuration.browserSize = webConfig.browserSize();
-        Configuration.browserVersion = webConfig.versionBrowser();
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-
-        Configuration.browserCapabilities = capabilities;
+//        Configuration.remote = webConfig.remoteUrl();
+//        Configuration.browser = webConfig.browser();
+//        Configuration.browserSize = webConfig.browserSize();
+//        Configuration.browserVersion = webConfig.versionBrowser();
+//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability("enableVNC", true);
+//        capabilities.setCapability("enableVideo", true);
+//
+//        Configuration.browserCapabilities = capabilities;
 
     }
 
@@ -49,13 +49,13 @@ public class TestBase {
 
     }
 
-    @AfterEach
-    public void tearDown() {
-
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-    }
+//    @AfterEach
+//    public void tearDown() {
+//
+//        Attach.screenshotAs("Last screenshot");
+//        Attach.pageSource();
+//        Attach.browserConsoleLogs();
+//        Attach.addVideo();
+//    }
 
 }
