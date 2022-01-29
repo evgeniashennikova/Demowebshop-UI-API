@@ -27,10 +27,7 @@ public class WebSteps {
     static void webSetUp() {
 
         Configuration.remote = webConfig.remoteUrl();
-        Configuration.browser = webConfig.browser();
-        Configuration.browserSize = webConfig.browserSize();
-        Configuration.browserVersion = webConfig.versionBrowser();
-        Configuration.timeout = 20000;
+        Configuration.timeout = 10000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
