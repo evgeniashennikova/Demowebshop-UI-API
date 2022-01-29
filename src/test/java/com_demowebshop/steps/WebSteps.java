@@ -91,12 +91,5 @@ public class WebSteps {
         assertThat(emailActual).isEqualTo(credential.email());
 
     }
-    @Step("Проверка")
-    public void chekcBrowser() {
-
-        open("http://demowebshop.tricentis.com");
-        $(".ico-register").shouldHave(text("Register"));
-
-    }
 
 }

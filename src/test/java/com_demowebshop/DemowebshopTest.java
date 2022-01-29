@@ -49,12 +49,5 @@ public class DemowebshopTest extends TestBase {
         webSteps.checkUserInfo();
 
     }
-    @Test
-    void checkBr() {
-
-        webSteps.chekcBrowser();
-
-    }
-
 
 }
