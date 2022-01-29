@@ -1,11 +1,14 @@
 package com_demowebshop;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com_demowebshop.attach.Attach;
 import com_demowebshop.steps.ApiSteps;
 import com_demowebshop.steps.WebSteps;
 import io.qameta.allure.selenide.AllureSelenide;
 import io.restassured.RestAssured;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -30,6 +33,16 @@ public class TestBase {
 
         sleep(500);
 
+    }
+
+    @AfterEach
+    public void tearDown() {
+
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+        Attach.addVideo();
     }
 
 }

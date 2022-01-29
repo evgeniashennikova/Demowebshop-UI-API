@@ -35,17 +35,6 @@ public class WebSteps {
 
     }
 
-    @AfterEach
-    public void tearDown() {
-
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Selenide.closeWebDriver();
-        Attach.addVideo();
-    }
-
-
     @Step("Открыть браузер и подставить cookie для Wishlist")
     public void setCookieForWishlist(String cookie) {
 
