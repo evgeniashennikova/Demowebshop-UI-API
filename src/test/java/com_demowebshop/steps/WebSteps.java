@@ -94,7 +94,7 @@ public class WebSteps {
     @Step("Проверка")
     public void chekcBrowser() {
 
-        open();
+        open("http://demowebshop.tricentis.com");
         $(".ico-register").shouldHave(text("Register"));
 
     }
