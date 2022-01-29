@@ -15,7 +15,7 @@ public interface WebDriverConfig extends Config {
     String browserSize();
 
     @Key("versionBrowser")
-    @DefaultValue("96.0")
+    @DefaultValue("91.0")
     String versionBrowser();
 
     @Key("remoteUrl")
