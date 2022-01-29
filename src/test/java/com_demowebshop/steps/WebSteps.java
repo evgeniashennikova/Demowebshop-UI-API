@@ -58,6 +58,11 @@ public class WebSteps {
         $("[name='removefromcart']").click();
         $(".update-wishlist-button").click();
         $(".wishlist-content").shouldHave(text("The wishlist is empty!"));
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+        Attach.addVideo();
 
     }
 
@@ -73,6 +78,11 @@ public class WebSteps {
         assertThat(firstNameActual).isEqualTo(credential.firstName());
         assertThat(lastNameActual).isEqualTo(credential.lastName());
         assertThat(emailActual).isEqualTo(credential.email());
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+        Attach.addVideo();
 
     }
 

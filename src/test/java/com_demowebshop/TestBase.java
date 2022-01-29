@@ -35,14 +35,14 @@ public class TestBase {
 
     }
 
-    @AfterEach
-    public void tearDown() {
-
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Selenide.closeWebDriver();
-        Attach.addVideo();
-    }
+//    @AfterEach
+//    public void tearDown() {
+//
+//        Attach.screenshotAs("Last screenshot");
+//        Attach.pageSource();
+//        Attach.browserConsoleLogs();
+//        Selenide.closeWebDriver();
+//        Attach.addVideo();
+//    }
 
 }
