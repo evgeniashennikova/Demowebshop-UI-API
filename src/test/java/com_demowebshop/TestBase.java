@@ -11,6 +11,7 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static java.lang.Thread.sleep;
 
@@ -26,6 +27,13 @@ public class TestBase {
         RestAssured.baseURI = "http://demowebshop.tricentis.com";
         Configuration.baseUrl = "http://demowebshop.tricentis.com";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.timeout = 10000;
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+
+        Configuration.browserCapabilities = capabilities;
     }
 
     @BeforeEach
@@ -35,14 +43,14 @@ public class TestBase {
 
     }
 
-//    @AfterEach
-//    public void tearDown() {
-//
-//        Attach.screenshotAs("Last screenshot");
-//        Attach.pageSource();
-//        Attach.browserConsoleLogs();
-//        Selenide.closeWebDriver();
-//        Attach.addVideo();
-//    }
+    @AfterEach
+    public void tearDown() {
+
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Selenide.closeWebDriver();
+        Attach.addVideo();
+    }
 
 }
