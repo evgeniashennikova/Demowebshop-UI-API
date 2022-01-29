@@ -91,5 +91,12 @@ public class WebSteps {
         assertThat(emailActual).isEqualTo(credential.email());
 
     }
+    @Step("Проверка")
+    public void chekcBrowser() {
+
+        open();
+        $(".ico-register").shouldHave(text("Register"));
+
+    }
 
 }
