@@ -30,6 +30,7 @@ public class WebSteps {
         Configuration.browser = webConfig.browser();
         Configuration.browserSize = webConfig.browserSize();
         Configuration.browserVersion = webConfig.versionBrowser();
+        Configuration.timeout = 20000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
