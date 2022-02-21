@@ -11,7 +11,6 @@ public class Spec {
     public static RequestSpecification request = with()
             .filter(customLogFilter().withCustomTemplates())
             .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-//            .log().uri()
             .log().all();
 
     public static ResponseSpecification response = with()

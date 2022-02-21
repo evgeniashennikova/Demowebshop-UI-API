@@ -1,12 +1,16 @@
 package com_demowebshop;
 
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Owner("Щенникова Е.")
 public class DemowebshopTest extends TestBase {
 
     @Test
+    @Story("Wishlist")
     @DisplayName("Добавление товара в Wishlist без использования cookie")
     void addToWishlistWithoutCookie() {
 
@@ -15,6 +19,7 @@ public class DemowebshopTest extends TestBase {
     }
 
     @Test
+    @Story("Wishlist")
     @DisplayName("Добавление товара в Wishlist c использованием cookie")
     void addToWishlistWithCookie() {
 
@@ -23,6 +28,7 @@ public class DemowebshopTest extends TestBase {
     }
 
     @Test
+    @Story("Функция поиска")
     @DisplayName("Проверка функции поиска")
     void searchStore() {
 
@@ -31,6 +37,7 @@ public class DemowebshopTest extends TestBase {
     }
 
     @Test
+    @Story("Wishlist")
     @DisplayName("Удаление товара из Wishlist c использованием cookie (API+UI)")
     void updateWishlistWithCookie() {
 
@@ -41,6 +48,7 @@ public class DemowebshopTest extends TestBase {
     }
 
     @Test
+    @Story("Аккаунт")
     @DisplayName("Проверка информации в аккаунте")
     void checkProfile() {
 
