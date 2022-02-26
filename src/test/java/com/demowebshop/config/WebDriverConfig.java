@@ -1,4 +1,4 @@
-package config;
+package com.demowebshop.config;
 
 import com.codeborne.selenide.Configuration;
 import org.aeonbits.owner.ConfigFactory;
@@ -7,7 +7,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static java.lang.String.format;
 
-public class WebDriverProvider {
+public class WebDriverConfig {
 
     private final static ProjectConfig webConfig = ConfigFactory.create(ProjectConfig.class, System.getProperties());
 

@@ -1,11 +1,11 @@
-package config;
+package com.demowebshop.config;
 
 import org.aeonbits.owner.Config;
 
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
         "system:properties",
-        "classpath:config/remote.properties"
+        "classpath:configs/projectConfig.properties"
 })
 
 public interface ProjectConfig extends Config {

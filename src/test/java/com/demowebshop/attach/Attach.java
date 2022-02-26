@@ -1,4 +1,4 @@
-package com_demowebshop.attach;
+package com.demowebshop.attach;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
@@ -58,3 +58,4 @@ public class Attach {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();
     }
 }
+

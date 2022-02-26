@@ -1,8 +1,8 @@
-package config;
+package com.demowebshop.config;
 
 import org.aeonbits.owner.Config;
 
-@Config.Sources({"classpath:config/credential.properties"})
+@Config.Sources({"classpath:configs/credential.properties"})
 
 public interface UserCredential extends Config {
 
